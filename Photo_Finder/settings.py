@@ -121,16 +121,29 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# added manually
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+
+MEDIA_ROOT = BASE_DIR / "static/images"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend'
 ]
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '326555849145-ri5p81fp7eunhu8ep07e8n4td2rp7fqm.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -146,5 +159,5 @@ SOCIALACCOUNT_PROVIDERS = {
 
 LOGIN_REDIRECT_URL = '/home'
 LOGOUT_REDIRECT_URL = '/'
-SITE_ID = 3
+SITE_ID = 4
 SOCIALACCOUNT_LOGIN_ON_GET = True

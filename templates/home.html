@@ -28,11 +28,22 @@
 
     <div class="container center" style="padding-top: 50px;">
         <div class="row align-items-center">
-            <div class="col-md-6">
-              Hello <strong>{{user}}</strong>
-                
+        <div class="col-md-6"> 
+          <div class="row">         
+            <div class="col-md-10">
+              <h2>Hello <strong>{{user}}</strong></h2>
+            </div>
+
+            <div class="col-md-2">
+              <a href="{% url 'logout' %}" class="btn btn-dark btn-block btn-sm m-1">Logout</a>
+            </div>
+          </div>  
+          <br><br>
+              
+              
+              
                 <div class="card">
-                    
+                  
                     <ul class="list-group list-group-flush">
 
                         <form method='POST' action="/" enctype="multipart/form-data">
@@ -41,25 +52,49 @@
                             <div class="form-group m-3">
                               <label>Google Drive Folder Link</label>
                                 <input type="text" id="roomCode" name="roomCode" class="form-control" placeholder="Google Drive Folder Link" required autofocus>
+                                
                                 <br>
                                 <label>Upload your images</label>
                                 <input required name="images" type="file" multiple class="form-control-file">
                             </div>
     
-                            <button type='submit' class="btn btn-primary m-3">Submit</button>
-    
+                            <button type='submit' class="btn btn-primary m-3">Submit</button>    
                         </form>
                     </ul>
                 </div>
                 <br>
+                <div class="row">
+                  <div class="col-md-8">
+                    <p>Your Photos Uploaded:<br> <strong>{{count}}</strong></p>
+                    <p>Drive Link to be processesd:<br> <strong>{{roomCode}}</strong></p>
+                  </div>
 
-                <div class="card">
-                    <ul class="list-group list-group-flush">
-                        <a href="{% url 'logout' %}" class="btn btn-dark btn-block btn-sm m-1">Logout</a>
-                    </ul>
+                  <div class="col-md-4">
+                    <form method='POST' action="{% url 'delete' %}">
+                      {% csrf_token %}   
+                      <button type="submit" class="btn btn-danger btn-sm">Delete All Uploaded</button>   
+                    </form>
+                  </div>
                 </div>
+                  
+              
+                </div>
+                
+                <div class = "row">
+                  <div class = "col-md-6">
+                    <a href="{% url 'process' %}" class="btn btn-dark btn-block btn-sm m-1">Process</a>  
+                  </div>
+                </div> 
+                      
+                
+              </div>
 
             </div>
+      
+              
+              <br>
+              
+
             <div class="col-md-9">
                 
             </div>
